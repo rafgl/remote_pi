@@ -23,6 +23,7 @@ import 'package:cockpit/app/cockpit/data/filesystem/file_searcher_impl.dart';
 import 'package:cockpit/app/cockpit/data/filesystem/file_system_mutator_impl.dart';
 import 'package:cockpit/app/cockpit/data/filesystem/file_system_reader_impl.dart';
 import 'package:cockpit/app/cockpit/data/filesystem/git_binary.dart';
+import 'package:cockpit/app/cockpit/data/hosting/git_hosting_catalog_impl.dart';
 import 'package:cockpit/app/cockpit/data/filesystem/git_command_runner_impl.dart';
 import 'package:cockpit/app/cockpit/data/filesystem/git_diff_reader_impl.dart';
 import 'package:cockpit/app/cockpit/data/filesystem/git_head_baseline_reader_impl.dart';
@@ -68,6 +69,7 @@ import 'package:cockpit/app/cockpit/domain/contracts/file_searcher.dart';
 import 'package:cockpit/app/cockpit/domain/contracts/file_system_mutator.dart';
 import 'package:cockpit/app/cockpit/domain/contracts/file_system_reader.dart';
 import 'package:cockpit/app/cockpit/domain/contracts/git_command_runner.dart';
+import 'package:cockpit/app/cockpit/domain/contracts/git_hosting_provider.dart';
 import 'package:cockpit/app/cockpit/domain/contracts/git_diff_reader.dart';
 import 'package:cockpit/app/cockpit/domain/contracts/git_head_baseline_reader.dart';
 import 'package:cockpit/app/cockpit/domain/contracts/git_history_reader.dart';
@@ -172,6 +174,9 @@ Future<Module> buildCockpitModule({
     debugPrint('Falha ao iniciar notificações: $error');
   }
 
+  // Uma instância só: o catálogo de clone (#278) reaproveita o git resolvido.
+  final gitBinary = GitBinary();
+
   return createModule(
     path: '/',
     register: (c) {
@@ -206,7 +211,8 @@ Future<Module> buildCockpitModule({
         ..addLazySingleton<HttpRequestRunner>(HttpRequestRunnerImpl.new)
         ..addInstance<FileSearcher>(FileSearcherImpl())
         ..addInstance<ContentSearcher>(const ContentSearcherImpl())
-        ..addInstance<GitBinary>(GitBinary())
+        ..addInstance<GitBinary>(gitBinary)
+        ..addInstance<GitHostingCatalog>(GitHostingCatalogImpl(gitBinary))
         ..addLazySingleton<GitStatusReader>(GitStatusReaderImpl.new)
         ..addLazySingleton<WorktreeManager>(WorktreeManagerImpl.new)
         ..addLazySingleton<GitCommandRunner>(GitCommandRunnerImpl.new)
