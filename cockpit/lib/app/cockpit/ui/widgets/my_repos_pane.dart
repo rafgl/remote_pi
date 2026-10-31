@@ -576,7 +576,7 @@ class _RepoBrowserState extends State<_RepoBrowser> {
               '${tr.clonesInto} ',
               style: context.typo.label.copyWith(color: colors.text3),
             ),
-            Flexible(
+            Expanded(
               child: Text(
                 root == null
                     ? '—'
@@ -590,7 +590,6 @@ class _RepoBrowserState extends State<_RepoBrowser> {
                 ),
               ),
             ),
-            const Spacer(),
             GhostButton(
               key: const ValueKey('my-repos-change-root'),
               size: ButtonSize.small,

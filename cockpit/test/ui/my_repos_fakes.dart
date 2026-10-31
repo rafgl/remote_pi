@@ -18,6 +18,7 @@ class FakeProvider implements GitHostingProvider {
       url: 'https://cli.github.com',
       command: CliCommand('brew', ['install', 'gh']),
     ),
+    this.connectArgs = const ['auth', 'login', '--web'],
   }) : statusValue = status ?? const ProviderStatus.cliMissing();
 
   @override
@@ -29,6 +30,7 @@ class FakeProvider implements GitHostingProvider {
   GitHostingError? listError;
   Completer<void>? gate;
   final InstallHint install;
+  final List<String> connectArgs;
   int listCalls = 0;
 
   @override
@@ -53,9 +55,7 @@ class FakeProvider implements GitHostingProvider {
   InstallHint installHint() => install;
 
   @override
-  List<CliCommand> connectCommands() => [
-    CliCommand(cliName, const ['auth', 'login', '--web']),
-  ];
+  List<CliCommand> connectCommands() => [CliCommand(cliName, connectArgs)];
 }
 
 /// Clone controlável pelo teste.
