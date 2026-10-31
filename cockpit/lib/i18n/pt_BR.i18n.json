@@ -952,6 +952,104 @@
       "hintSshMissing": "SSH indisponível para esta URL. Use a URL HTTPS ou instale o OpenSSH (o Git for Windows já traz um).",
       "hintHostKey": "A chave SSH do servidor não pôde ser verificada ou mudou. Confira o ~/.ssh/known_hosts antes de tentar de novo.",
       "hintAuth": "Acesso negado ou repositório não encontrado. No SSH, teste sua chave com ssh -T git@github.com; no HTTPS, entre pelo gerenciador de credenciais do Git (ou gh auth login)."
+    },
+    "myRepos": {
+      "tabPasteUrl": "Colar URL",
+      "tabMyRepos": "Meus repositórios",
+      "detecting": "Procurando as CLIs de Git neste computador…",
+      "connectOther": "Conectar outro serviço",
+      "search": "Buscar repositórios…",
+      "signedInAs": "${host} · logado como ${login} (${cli})",
+      "count(plural)": {
+        "one": "1 repositório",
+        "other": "${n} repositórios"
+      },
+      "countFiltered": "${shown} de ${total}",
+      "ownerYou": "${owner} · você",
+      "ownerOrg": "${owner} · organização",
+      "private": "privado",
+      "updated": "atualizado ${ago}",
+      "justNow": "agora",
+      "minutesAgo(plural)": {
+        "one": "há 1 minuto",
+        "other": "há ${n} minutos"
+      },
+      "hoursAgo(plural)": {
+        "one": "há 1 hora",
+        "other": "há ${n} horas"
+      },
+      "yesterday": "ontem",
+      "daysAgo(plural)": {
+        "one": "há 1 dia",
+        "other": "há ${n} dias"
+      },
+      "weeksAgo(plural)": {
+        "one": "há 1 semana",
+        "other": "há ${n} semanas"
+      },
+      "monthsAgo(plural)": {
+        "one": "há 1 mês",
+        "other": "há ${n} meses"
+      },
+      "yearsAgo(plural)": {
+        "one": "há 1 ano",
+        "other": "há ${n} anos"
+      },
+      "clone": "Clonar",
+      "open": "Abrir",
+      "retry": "Tentar de novo",
+      "details": "Ver detalhes",
+      "hideDetails": "Ocultar detalhes",
+      "alreadyCloned": "Já clonado em ${path}",
+      "phaseStarting": "Iniciando…",
+      "phaseCounting": "Contando objetos",
+      "phaseCompressing": "Comprimindo objetos",
+      "phaseReceiving": "Recebendo objetos",
+      "phaseResolving": "Resolvendo deltas",
+      "phaseUpdating": "Extraindo arquivos",
+      "progress": "${phase} ${percent}%",
+      "progressSize": "${phase} ${percent}% · ${size}",
+      "clonesInto": "Clona em",
+      "change": "Alterar…",
+      "chooseRootTitle": "Escolha onde clonar seus repositórios",
+      "loading": "Buscando seus repositórios no ${provider}…",
+      "empty": "Nenhum repositório nesta conta.",
+      "noMatch": "Nenhum repositório com \"${query}\".",
+      "errSignedOut": "O ${provider} diz que você não está logado. Conecte de novo abaixo.",
+      "errCli": "O ${cli} não está mais disponível neste computador.",
+      "errNoOrg": "Esta conta não tem nenhuma organização do Azure DevOps.",
+      "errCommand": "O ${cli} não conseguiu listar os repositórios.",
+      "errOutput": "O ${cli} respondeu algo que o Cockpit não conseguiu ler.",
+      "failAuth": "Sem permissão para ${repo}",
+      "failExists": "A pasta ${path} já existe e não está vazia",
+      "failGit": "O Git não foi encontrado neste computador",
+      "failXcode": "Faltam as Command Line Tools do macOS (xcode-select --install)",
+      "failSsh": "SSH não está disponível para este repositório",
+      "failHostKey": "Não deu para verificar a chave SSH do servidor",
+      "failGeneric": "Não deu para clonar ${repo}",
+      "connectTitle": "Conectar um serviço Git",
+      "noneTitle": "Nenhum serviço Git conectado",
+      "connectIntro": "A lista usa a CLI oficial que já está na sua máquina. O Cockpit não pede nem guarda token. Instale e conecte numa aba de terminal; quando terminar, a lista recarrega.",
+      "stateMissing": "${cli} não instalado",
+      "stateSignedOut": "${cli} instalado, sem login",
+      "stateReady": "Conectado como ${login}",
+      "install": "Instalar",
+      "connect": "Conectar",
+      "getAt": "Baixar",
+      "noBrew": "Homebrew não encontrado: instale o ${cli} pela página oficial.",
+      "checkAgain": "Verificar de novo",
+      "pasteStillWorks": "A aba \"Colar URL\" continua funcionando com qualquer servidor Git.",
+      "clonesGoTo": "Os clones vão para ${path}.",
+      "bitbucketNote": "Bitbucket ainda não é suportado: não tem CLI oficial que liste repositórios. Use \"Colar URL\".",
+      "terminalInstall": "Instalar ${cli}",
+      "terminalConnect": "Conectar ${provider}",
+      "firstFolderTitle": "Onde clonar seus repositórios?",
+      "firstFolderBody": "Cada clone em um clique vira uma pasta aqui dentro, com o nome do repositório (${command}).",
+      "suggested": "sugerida",
+      "chooseOther": "Escolher outra pasta…",
+      "changeLater": "Dá pra mudar depois em Configurações.",
+      "useAndClone": "Usar ${path} e clonar",
+      "doneToast": "${name} clonado em ${path}"
     }
   },
   "settings": {
@@ -1007,7 +1105,12 @@
           "never": "Nunca"
         },
         "developerModeTitle": "Modo desenvolvedor",
-        "developerModeDesc": "Registra os erros e avisos do próprio Cockpit numa base separada da Telemetria (chip “Cockpit”) e liga as métricas de performance. Só serve a quem mantém o app."
+        "developerModeDesc": "Registra os erros e avisos do próprio Cockpit numa base separada da Telemetria (chip “Cockpit”) e liga as métricas de performance. Só serve a quem mantém o app.",
+        "sectionRepositories": "Repositórios",
+        "cloneRootTitle": "Pasta dos clones",
+        "cloneRootDesc": "Onde \"Meus repositórios\" clona em um clique.",
+        "cloneRootNotSet": "Ainda não escolhida: pergunta no primeiro clone",
+        "cloneRootChoose": "Escolher…"
       },
       "diagnostics": {
         "sectionTitle": "Diagnóstico",

@@ -496,6 +496,31 @@ class _GeneralPanel extends StatelessWidget {
                   ),
                 ),
                 _Section(
+                  label: tr.sectionRepositories,
+                  child: _Card(
+                    children: [
+                      _Row(
+                        title: tr.cloneRootTitle,
+                        description: s.cloneRoot == null
+                            ? '${tr.cloneRootDesc} ${tr.cloneRootNotSet}'
+                            : '${tr.cloneRootDesc} ${s.cloneRoot}',
+                        trailing: OutlineButton(
+                          key: const ValueKey('settings-clone-root'),
+                          size: ButtonSize.small,
+                          onPressed: () async {
+                            final picked = await NativeFolderPicker.pick(
+                              dialogTitle: tr.cloneRootTitle,
+                              initialDirectory: s.cloneRoot,
+                            );
+                            if (picked != null) controller.setCloneRoot(picked);
+                          },
+                          child: Text(tr.cloneRootChoose),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                _Section(
                   label: tr.sectionUpdates,
                   child: _Card(
                     children: [

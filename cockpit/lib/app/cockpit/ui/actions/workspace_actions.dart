@@ -1,12 +1,18 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:cockpit/app/cockpit/domain/contracts/git_command_runner.dart';
+import 'package:cockpit/app/cockpit/domain/contracts/git_hosting_provider.dart';
 import 'package:cockpit/app/cockpit/domain/entities/project.dart';
 import 'package:cockpit/app/cockpit/domain/validators/clone_destination.dart';
+import 'package:cockpit/app/cockpit/domain/validators/my_repos.dart';
+import 'package:cockpit/app/cockpit/ui/viewmodels/my_repos_controller.dart';
 import 'package:cockpit/app/cockpit/ui/widgets/clone_repository_dialog.dart';
 import 'package:cockpit/app/cockpit/ui/widgets/git_process_dialog.dart';
 import 'package:cockpit/app/cockpit/ui/viewmodels/cockpit_viewmodel.dart';
 import 'package:cockpit/app/cockpit/ui/widgets/widgets.dart';
+import 'package:cockpit/app/core/ui/settings_controller.dart';
+import 'package:cockpit/app/core/ui/themes/themes.dart';
 import 'package:cockpit/app/core/utils/native_folder_picker.dart';
 import 'package:cockpit/app/core/utils/user_home.dart';
 import 'package:cockpit/i18n/strings.g.dart';
@@ -79,20 +85,109 @@ Future<bool> _registerWorkspace(
   return true;
 }
 
-/// "Clonar repositório" (menu do "+"): URL + destino → `git clone` ao vivo no
-/// dialog de processo → se deu certo, segue o fluxo de "Criar Workspace"
-/// (nome + cor) na pasta clonada. Clone que falha não registra nada.
-Future<bool> cloneWorkspace(BuildContext context) async {
+/// "Clonar repositório" (menu do "+").
+///
+/// - **Colar URL**: `git clone` ao vivo no dialog de processo e, se deu certo,
+///   o fluxo de "Criar Workspace" (nome + cor) na pasta clonada.
+/// - **Meus repositórios** (#278): o clone roda dentro do dialog; ao terminar,
+///   o workspace nasce direto com o nome do repo e a próxima cor da paleta.
+///   "Abrir" seleciona (ou cria) o workspace do repo já clonado.
+/// - **Instalar/Conectar** uma CLI: roda numa aba de terminal (o comando é
+///   interativo) e, quando o shell sai, reabre o dialog em Meus repositórios,
+///   que detecta tudo de novo.
+///
+/// Clone que falha não registra nada. [initialTab] é usado na reabertura.
+Future<bool> cloneWorkspace(
+  BuildContext context, {
+  CloneDialogTab? initialTab,
+}) async {
   final vm = _vm(context);
-  final request = await showCloneRepositoryDialog(
-    context,
-    initialParent: cloneInitialParent(
-      selectedProjectPath: vm.selectedProject?.path,
-      home: userHome(),
-      fallback: Directory.current.path,
+  final settings = context.read<SettingsController>();
+  final myRepos = MyReposController(
+    catalog: inject<GitHostingCatalog>(),
+    cloneRoot: settings.settings.cloneRoot,
+    home: userHome(),
+  );
+  unawaited(myRepos.init());
+  final CloneDialogResult? result;
+  try {
+    result = await showCloneRepositoryDialog(
+      context,
+      initialParent: cloneInitialParent(
+        selectedProjectPath: vm.selectedProject?.path,
+        home: userHome(),
+        fallback: Directory.current.path,
+      ),
+      myRepos: myRepos,
+      initialTab: initialTab,
+      onCloneRootChosen: settings.setCloneRoot,
+      onOpenUrl: (url) => unawaited(vm.openUrlExternally(url)),
+    );
+  } finally {
+    myRepos.dispose();
+  }
+  if (result == null || !context.mounted) return false;
+  switch (result) {
+    case CloneFromUrl(:final request):
+      return _cloneFromUrl(context, vm, request);
+    case ClonedRepo(:final repo, :final path):
+      await vm.addProject(path, name: repo.name);
+      if (context.mounted) {
+        _toast(
+          context,
+          context.t.cockpit.myRepos.doneToast(
+            name: repo.name,
+            path: displayPath(
+              path,
+              home: userHome(),
+              windows: Platform.isWindows,
+            ),
+          ),
+        );
+      }
+      return true;
+    case OpenClonedRepo(:final repo, :final path):
+      // addProject seleciona o workspace se o caminho já é um.
+      await vm.addProject(path, name: repo.name);
+      return true;
+    case RunInTerminal(:final commands, :final title):
+      final opened = await vm.runCommandsInTerminal(commands, title: title);
+      if (!opened || !context.mounted) return false;
+      return cloneWorkspace(context, initialTab: CloneDialogTab.myRepos);
+  }
+}
+
+void _toast(BuildContext context, String message) {
+  showToast(
+    context: context,
+    location: ToastLocation.bottomRight,
+    builder: (context, overlay) => SurfaceCard(
+      child: Padding(
+        padding: const EdgeInsets.all(12),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              Icons.check_circle_outline,
+              size: 18,
+              color: context.colors.ok,
+            ),
+            const SizedBox(width: 10),
+            Text(message, style: context.typo.label),
+          ],
+        ),
+      ),
     ),
   );
-  if (request == null || !context.mounted) return false;
+}
+
+/// "Colar URL": `git clone` ao vivo no dialog de processo → fluxo de "Criar
+/// Workspace" (nome + cor) na pasta clonada.
+Future<bool> _cloneFromUrl(
+  BuildContext context,
+  CockpitViewModel vm,
+  CloneRequest request,
+) async {
   final tr = context.t.cockpit.cloneRepoDialog;
   final process = vm.gitClone(request.url, request.targetPath);
   final lines = <String>[];
@@ -115,7 +210,9 @@ Future<bool> cloneWorkspace(BuildContext context) async {
             CloneFailure.sshMissing => tr.hintSshMissing,
             CloneFailure.hostKey => tr.hintHostKey,
             CloneFailure.auth => tr.hintAuth,
-            null => '',
+            // O dialog já recusa pasta ocupada; se o disco mudou no meio, o
+            // erro do git basta.
+            CloneFailure.targetExists || null => '',
           },
   );
   if (!await ok || !context.mounted) return false;

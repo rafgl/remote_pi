@@ -145,6 +145,7 @@ class _Translations$cockpit$pt_BR extends Translations$cockpit$en {
 	@override late final _Translations$cockpit$telemetry$pt_BR telemetry = _Translations$cockpit$telemetry$pt_BR._(_root);
 	@override late final _Translations$cockpit$panelView$pt_BR panelView = _Translations$cockpit$panelView$pt_BR._(_root);
 	@override late final _Translations$cockpit$cloneRepoDialog$pt_BR cloneRepoDialog = _Translations$cockpit$cloneRepoDialog$pt_BR._(_root);
+	@override late final _Translations$cockpit$myRepos$pt_BR myRepos = _Translations$cockpit$myRepos$pt_BR._(_root);
 }
 
 // Path: settings
@@ -1533,6 +1534,111 @@ class _Translations$cockpit$cloneRepoDialog$pt_BR extends Translations$cockpit$c
 	@override String get hintAuth => 'Acesso negado ou repositório não encontrado. No SSH, teste sua chave com ssh -T git@github.com; no HTTPS, entre pelo gerenciador de credenciais do Git (ou gh auth login).';
 }
 
+// Path: cockpit.myRepos
+class _Translations$cockpit$myRepos$pt_BR extends Translations$cockpit$myRepos$en {
+	_Translations$cockpit$myRepos$pt_BR._(TranslationsPtBr root) : this._root = root, super.internal(root);
+
+	final TranslationsPtBr _root; // ignore: unused_field
+
+	// Translations
+	@override String get tabPasteUrl => 'Colar URL';
+	@override String get tabMyRepos => 'Meus repositórios';
+	@override String get detecting => 'Procurando as CLIs de Git neste computador…';
+	@override String get connectOther => 'Conectar outro serviço';
+	@override String get search => 'Buscar repositórios…';
+	@override String signedInAs({required Object host, required Object login, required Object cli}) => '${host} · logado como ${login} (${cli})';
+	@override String count({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(n,
+		one: '1 repositório',
+		other: '${n} repositórios',
+	);
+	@override String countFiltered({required Object shown, required Object total}) => '${shown} de ${total}';
+	@override String ownerYou({required Object owner}) => '${owner} · você';
+	@override String ownerOrg({required Object owner}) => '${owner} · organização';
+	@override String get private => 'privado';
+	@override String updated({required Object ago}) => 'atualizado ${ago}';
+	@override String get justNow => 'agora';
+	@override String minutesAgo({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(n,
+		one: 'há 1 minuto',
+		other: 'há ${n} minutos',
+	);
+	@override String hoursAgo({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(n,
+		one: 'há 1 hora',
+		other: 'há ${n} horas',
+	);
+	@override String get yesterday => 'ontem';
+	@override String daysAgo({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(n,
+		one: 'há 1 dia',
+		other: 'há ${n} dias',
+	);
+	@override String weeksAgo({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(n,
+		one: 'há 1 semana',
+		other: 'há ${n} semanas',
+	);
+	@override String monthsAgo({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(n,
+		one: 'há 1 mês',
+		other: 'há ${n} meses',
+	);
+	@override String yearsAgo({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(n,
+		one: 'há 1 ano',
+		other: 'há ${n} anos',
+	);
+	@override String get clone => 'Clonar';
+	@override String get open => 'Abrir';
+	@override String get retry => 'Tentar de novo';
+	@override String get details => 'Ver detalhes';
+	@override String get hideDetails => 'Ocultar detalhes';
+	@override String alreadyCloned({required Object path}) => 'Já clonado em ${path}';
+	@override String get phaseStarting => 'Iniciando…';
+	@override String get phaseCounting => 'Contando objetos';
+	@override String get phaseCompressing => 'Comprimindo objetos';
+	@override String get phaseReceiving => 'Recebendo objetos';
+	@override String get phaseResolving => 'Resolvendo deltas';
+	@override String get phaseUpdating => 'Extraindo arquivos';
+	@override String progress({required Object phase, required Object percent}) => '${phase} ${percent}%';
+	@override String progressSize({required Object phase, required Object percent, required Object size}) => '${phase} ${percent}% · ${size}';
+	@override String get clonesInto => 'Clona em';
+	@override String get change => 'Alterar…';
+	@override String get chooseRootTitle => 'Escolha onde clonar seus repositórios';
+	@override String loading({required Object provider}) => 'Buscando seus repositórios no ${provider}…';
+	@override String get empty => 'Nenhum repositório nesta conta.';
+	@override String noMatch({required Object query}) => 'Nenhum repositório com "${query}".';
+	@override String errSignedOut({required Object provider}) => 'O ${provider} diz que você não está logado. Conecte de novo abaixo.';
+	@override String errCli({required Object cli}) => 'O ${cli} não está mais disponível neste computador.';
+	@override String get errNoOrg => 'Esta conta não tem nenhuma organização do Azure DevOps.';
+	@override String errCommand({required Object cli}) => 'O ${cli} não conseguiu listar os repositórios.';
+	@override String errOutput({required Object cli}) => 'O ${cli} respondeu algo que o Cockpit não conseguiu ler.';
+	@override String failAuth({required Object repo}) => 'Sem permissão para ${repo}';
+	@override String failExists({required Object path}) => 'A pasta ${path} já existe e não está vazia';
+	@override String get failGit => 'O Git não foi encontrado neste computador';
+	@override String get failXcode => 'Faltam as Command Line Tools do macOS (xcode-select --install)';
+	@override String get failSsh => 'SSH não está disponível para este repositório';
+	@override String get failHostKey => 'Não deu para verificar a chave SSH do servidor';
+	@override String failGeneric({required Object repo}) => 'Não deu para clonar ${repo}';
+	@override String get connectTitle => 'Conectar um serviço Git';
+	@override String get noneTitle => 'Nenhum serviço Git conectado';
+	@override String get connectIntro => 'A lista usa a CLI oficial que já está na sua máquina. O Cockpit não pede nem guarda token. Instale e conecte numa aba de terminal; quando terminar, a lista recarrega.';
+	@override String stateMissing({required Object cli}) => '${cli} não instalado';
+	@override String stateSignedOut({required Object cli}) => '${cli} instalado, sem login';
+	@override String stateReady({required Object login}) => 'Conectado como ${login}';
+	@override String get install => 'Instalar';
+	@override String get connect => 'Conectar';
+	@override String get getAt => 'Baixar';
+	@override String noBrew({required Object cli}) => 'Homebrew não encontrado: instale o ${cli} pela página oficial.';
+	@override String get checkAgain => 'Verificar de novo';
+	@override String get pasteStillWorks => 'A aba "Colar URL" continua funcionando com qualquer servidor Git.';
+	@override String clonesGoTo({required Object path}) => 'Os clones vão para ${path}.';
+	@override String get bitbucketNote => 'Bitbucket ainda não é suportado: não tem CLI oficial que liste repositórios. Use "Colar URL".';
+	@override String terminalInstall({required Object cli}) => 'Instalar ${cli}';
+	@override String terminalConnect({required Object provider}) => 'Conectar ${provider}';
+	@override String get firstFolderTitle => 'Onde clonar seus repositórios?';
+	@override String firstFolderBody({required Object command}) => 'Cada clone em um clique vira uma pasta aqui dentro, com o nome do repositório (${command}).';
+	@override String get suggested => 'sugerida';
+	@override String get chooseOther => 'Escolher outra pasta…';
+	@override String get changeLater => 'Dá pra mudar depois em Configurações.';
+	@override String useAndClone({required Object path}) => 'Usar ${path} e clonar';
+	@override String doneToast({required Object name, required Object path}) => '${name} clonado em ${path}';
+}
+
 // Path: settings.language
 class _Translations$settings$language$pt_BR extends Translations$settings$language$en {
 	_Translations$settings$language$pt_BR._(TranslationsPtBr root) : this._root = root, super.internal(root);
@@ -1896,6 +2002,11 @@ class _Translations$settings$page$general$pt_BR extends Translations$settings$pa
 	@override late final _Translations$settings$page$general$updateFrequency$pt_BR updateFrequency = _Translations$settings$page$general$updateFrequency$pt_BR._(_root);
 	@override String get developerModeTitle => 'Modo desenvolvedor';
 	@override String get developerModeDesc => 'Registra os erros e avisos do próprio Cockpit numa base separada da Telemetria (chip “Cockpit”) e liga as métricas de performance. Só serve a quem mantém o app.';
+	@override String get sectionRepositories => 'Repositórios';
+	@override String get cloneRootTitle => 'Pasta dos clones';
+	@override String get cloneRootDesc => 'Onde "Meus repositórios" clona em um clique.';
+	@override String get cloneRootNotSet => 'Ainda não escolhida: pergunta no primeiro clone';
+	@override String get cloneRootChoose => 'Escolher…';
 }
 
 // Path: settings.page.diagnostics
@@ -2962,6 +3073,81 @@ extension on TranslationsPtBr {
 			'cockpit.cloneRepoDialog.hintSshMissing' => 'SSH indisponível para esta URL. Use a URL HTTPS ou instale o OpenSSH (o Git for Windows já traz um).',
 			'cockpit.cloneRepoDialog.hintHostKey' => 'A chave SSH do servidor não pôde ser verificada ou mudou. Confira o ~/.ssh/known_hosts antes de tentar de novo.',
 			'cockpit.cloneRepoDialog.hintAuth' => 'Acesso negado ou repositório não encontrado. No SSH, teste sua chave com ssh -T git@github.com; no HTTPS, entre pelo gerenciador de credenciais do Git (ou gh auth login).',
+			'cockpit.myRepos.tabPasteUrl' => 'Colar URL',
+			'cockpit.myRepos.tabMyRepos' => 'Meus repositórios',
+			'cockpit.myRepos.detecting' => 'Procurando as CLIs de Git neste computador…',
+			'cockpit.myRepos.connectOther' => 'Conectar outro serviço',
+			'cockpit.myRepos.search' => 'Buscar repositórios…',
+			'cockpit.myRepos.signedInAs' => ({required Object host, required Object login, required Object cli}) => '${host} · logado como ${login} (${cli})',
+			'cockpit.myRepos.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(n, one: '1 repositório', other: '${n} repositórios', ), 
+			'cockpit.myRepos.countFiltered' => ({required Object shown, required Object total}) => '${shown} de ${total}',
+			'cockpit.myRepos.ownerYou' => ({required Object owner}) => '${owner} · você',
+			'cockpit.myRepos.ownerOrg' => ({required Object owner}) => '${owner} · organização',
+			'cockpit.myRepos.private' => 'privado',
+			'cockpit.myRepos.updated' => ({required Object ago}) => 'atualizado ${ago}',
+			'cockpit.myRepos.justNow' => 'agora',
+			'cockpit.myRepos.minutesAgo' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(n, one: 'há 1 minuto', other: 'há ${n} minutos', ), 
+			'cockpit.myRepos.hoursAgo' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(n, one: 'há 1 hora', other: 'há ${n} horas', ), 
+			'cockpit.myRepos.yesterday' => 'ontem',
+			'cockpit.myRepos.daysAgo' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(n, one: 'há 1 dia', other: 'há ${n} dias', ), 
+			'cockpit.myRepos.weeksAgo' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(n, one: 'há 1 semana', other: 'há ${n} semanas', ), 
+			'cockpit.myRepos.monthsAgo' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(n, one: 'há 1 mês', other: 'há ${n} meses', ), 
+			'cockpit.myRepos.yearsAgo' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(n, one: 'há 1 ano', other: 'há ${n} anos', ), 
+			'cockpit.myRepos.clone' => 'Clonar',
+			'cockpit.myRepos.open' => 'Abrir',
+			'cockpit.myRepos.retry' => 'Tentar de novo',
+			'cockpit.myRepos.details' => 'Ver detalhes',
+			'cockpit.myRepos.hideDetails' => 'Ocultar detalhes',
+			'cockpit.myRepos.alreadyCloned' => ({required Object path}) => 'Já clonado em ${path}',
+			'cockpit.myRepos.phaseStarting' => 'Iniciando…',
+			'cockpit.myRepos.phaseCounting' => 'Contando objetos',
+			'cockpit.myRepos.phaseCompressing' => 'Comprimindo objetos',
+			'cockpit.myRepos.phaseReceiving' => 'Recebendo objetos',
+			'cockpit.myRepos.phaseResolving' => 'Resolvendo deltas',
+			'cockpit.myRepos.phaseUpdating' => 'Extraindo arquivos',
+			'cockpit.myRepos.progress' => ({required Object phase, required Object percent}) => '${phase} ${percent}%',
+			'cockpit.myRepos.progressSize' => ({required Object phase, required Object percent, required Object size}) => '${phase} ${percent}% · ${size}',
+			'cockpit.myRepos.clonesInto' => 'Clona em',
+			'cockpit.myRepos.change' => 'Alterar…',
+			'cockpit.myRepos.chooseRootTitle' => 'Escolha onde clonar seus repositórios',
+			'cockpit.myRepos.loading' => ({required Object provider}) => 'Buscando seus repositórios no ${provider}…',
+			'cockpit.myRepos.empty' => 'Nenhum repositório nesta conta.',
+			'cockpit.myRepos.noMatch' => ({required Object query}) => 'Nenhum repositório com "${query}".',
+			'cockpit.myRepos.errSignedOut' => ({required Object provider}) => 'O ${provider} diz que você não está logado. Conecte de novo abaixo.',
+			'cockpit.myRepos.errCli' => ({required Object cli}) => 'O ${cli} não está mais disponível neste computador.',
+			'cockpit.myRepos.errNoOrg' => 'Esta conta não tem nenhuma organização do Azure DevOps.',
+			'cockpit.myRepos.errCommand' => ({required Object cli}) => 'O ${cli} não conseguiu listar os repositórios.',
+			'cockpit.myRepos.errOutput' => ({required Object cli}) => 'O ${cli} respondeu algo que o Cockpit não conseguiu ler.',
+			'cockpit.myRepos.failAuth' => ({required Object repo}) => 'Sem permissão para ${repo}',
+			'cockpit.myRepos.failExists' => ({required Object path}) => 'A pasta ${path} já existe e não está vazia',
+			'cockpit.myRepos.failGit' => 'O Git não foi encontrado neste computador',
+			'cockpit.myRepos.failXcode' => 'Faltam as Command Line Tools do macOS (xcode-select --install)',
+			'cockpit.myRepos.failSsh' => 'SSH não está disponível para este repositório',
+			'cockpit.myRepos.failHostKey' => 'Não deu para verificar a chave SSH do servidor',
+			'cockpit.myRepos.failGeneric' => ({required Object repo}) => 'Não deu para clonar ${repo}',
+			'cockpit.myRepos.connectTitle' => 'Conectar um serviço Git',
+			'cockpit.myRepos.noneTitle' => 'Nenhum serviço Git conectado',
+			'cockpit.myRepos.connectIntro' => 'A lista usa a CLI oficial que já está na sua máquina. O Cockpit não pede nem guarda token. Instale e conecte numa aba de terminal; quando terminar, a lista recarrega.',
+			'cockpit.myRepos.stateMissing' => ({required Object cli}) => '${cli} não instalado',
+			'cockpit.myRepos.stateSignedOut' => ({required Object cli}) => '${cli} instalado, sem login',
+			'cockpit.myRepos.stateReady' => ({required Object login}) => 'Conectado como ${login}',
+			'cockpit.myRepos.install' => 'Instalar',
+			'cockpit.myRepos.connect' => 'Conectar',
+			'cockpit.myRepos.getAt' => 'Baixar',
+			'cockpit.myRepos.noBrew' => ({required Object cli}) => 'Homebrew não encontrado: instale o ${cli} pela página oficial.',
+			'cockpit.myRepos.checkAgain' => 'Verificar de novo',
+			'cockpit.myRepos.pasteStillWorks' => 'A aba "Colar URL" continua funcionando com qualquer servidor Git.',
+			'cockpit.myRepos.clonesGoTo' => ({required Object path}) => 'Os clones vão para ${path}.',
+			'cockpit.myRepos.bitbucketNote' => 'Bitbucket ainda não é suportado: não tem CLI oficial que liste repositórios. Use "Colar URL".',
+			'cockpit.myRepos.terminalInstall' => ({required Object cli}) => 'Instalar ${cli}',
+			'cockpit.myRepos.terminalConnect' => ({required Object provider}) => 'Conectar ${provider}',
+			'cockpit.myRepos.firstFolderTitle' => 'Onde clonar seus repositórios?',
+			'cockpit.myRepos.firstFolderBody' => ({required Object command}) => 'Cada clone em um clique vira uma pasta aqui dentro, com o nome do repositório (${command}).',
+			'cockpit.myRepos.suggested' => 'sugerida',
+			'cockpit.myRepos.chooseOther' => 'Escolher outra pasta…',
+			'cockpit.myRepos.changeLater' => 'Dá pra mudar depois em Configurações.',
+			'cockpit.myRepos.useAndClone' => ({required Object path}) => 'Usar ${path} e clonar',
+			'cockpit.myRepos.doneToast' => ({required Object name, required Object path}) => '${name} clonado em ${path}',
 			'settings.language.title' => 'Idioma',
 			'settings.language.system' => 'Sistema',
 			'settings.language.english' => 'Inglês',
@@ -3003,6 +3189,11 @@ extension on TranslationsPtBr {
 			'settings.page.general.updateFrequency.never' => 'Nunca',
 			'settings.page.general.developerModeTitle' => 'Modo desenvolvedor',
 			'settings.page.general.developerModeDesc' => 'Registra os erros e avisos do próprio Cockpit numa base separada da Telemetria (chip “Cockpit”) e liga as métricas de performance. Só serve a quem mantém o app.',
+			'settings.page.general.sectionRepositories' => 'Repositórios',
+			'settings.page.general.cloneRootTitle' => 'Pasta dos clones',
+			'settings.page.general.cloneRootDesc' => 'Onde "Meus repositórios" clona em um clique.',
+			'settings.page.general.cloneRootNotSet' => 'Ainda não escolhida: pergunta no primeiro clone',
+			'settings.page.general.cloneRootChoose' => 'Escolher…',
 			'settings.page.diagnostics.sectionTitle' => 'Diagnóstico',
 			'settings.page.diagnostics.logFileTitle' => 'Arquivo de log',
 			'settings.page.diagnostics.logFileDesc' => ({required Object days, required Object path}) => 'Erros e eventos de inicialização são registrados aqui, mantidos por ${days} dias.\n${path}',
@@ -3098,6 +3289,8 @@ extension on TranslationsPtBr {
 			'settings.page.appearance.sectionLayout' => 'Layout',
 			'settings.page.appearance.swapPanelsTitle' => 'Inverter panes',
 			'settings.page.appearance.swapPanelsDesc' => 'Coloca os workspaces à direita e arquivos, busca, git e banco à esquerda.',
+			_ => null,
+		} ?? switch (path) {
 			'settings.page.notifications.sectionTitle' => 'Notificações',
 			'settings.page.notifications.enableTitle' => 'Ativar notificações',
 			'settings.page.notifications.enableDesc' => 'Avisar quando um agente terminar uma resposta e a janela não estiver em foco.',
@@ -3178,8 +3371,6 @@ extension on TranslationsPtBr {
 			'automation.error.authentication' => ({required Object harness, required Object detail}) => '${harness}: ${detail}',
 			'automation.error.timeout' => ({required Object harness, required Object seconds}) => '${harness} não respondeu em ${seconds} segundos.',
 			'automation.error.cancelled' => 'A geração da mensagem de commit foi cancelada.',
-			_ => null,
-		} ?? switch (path) {
 			'automation.error.process' => ({required Object harness, required Object detail}) => '${harness}: ${detail}',
 			'automation.error.processNoDetail' => ({required Object harness}) => '${harness} não conseguiu gerar uma mensagem de commit.',
 			'automation.error.invalidResponse' => 'A automação devolveu uma mensagem de commit vazia.',

@@ -111,6 +111,8 @@ import 'package:cockpit/app/core/ui/automation_controller.dart';
 import 'package:cockpit/app/core/utils/path_utils.dart';
 import 'package:cockpit/app/core/utils/platform_kind.dart';
 import 'package:cockpit/app/core/utils/user_home.dart';
+import 'package:cockpit/app/cockpit/domain/validators/my_repos.dart'
+    show TerminalShell, terminalScript;
 import 'package:cockpit/app/cockpit/ui/session/empty_tab.dart';
 import 'package:cockpit/app/cockpit/ui/session/diff_viewer_session.dart';
 import 'package:cockpit/app/cockpit/ui/session/file_viewer_session.dart';
@@ -5386,6 +5388,72 @@ class CockpitViewModel extends ChangeNotifier
   GitRun gitClone(String url, String targetPath) =>
       _gitRunner.clone(url, targetPath);
 
+  /// Roda [commands] (argv cada um) numa aba de terminal nova e completa
+  /// quando o shell sai — o script termina em `exit`. Usado pelo "Instalar" e
+  /// "Conectar" da aba Meus repositórios: os comandos são interativos
+  /// (`gh auth login --web` pergunta e mostra um código), então rodam onde o
+  /// usuário pode responder. A aba fica aberta com a saída, salvo se a
+  /// preferência de fechar ao sair do shell estiver ligada.
+  ///
+  /// Abre no workspace local selecionado; num workspace remoto (o comando
+  /// rodaria no host) ou sem seleção, no workspace "Cockpit". No Windows força
+  /// o PowerShell, cuja sintaxe o script usa. Devolve `false` se não deu para
+  /// abrir a aba.
+  Future<bool> runCommandsInTerminal(
+    List<List<String>> commands, {
+    required String title,
+  }) async {
+    final selected = _selectedProjectId;
+    final selectedProject = selected == null ? null : _projectById(selected);
+    final local =
+        selectedProject != null &&
+        !_isRemoteWorkspace(selectedProject.id) &&
+        _trees[selectedProject.id] != null;
+    final workspaceId = local
+        ? selectedProject.id
+        : (cockpitWorkspace != null ? Project.cockpitId : null);
+    if (workspaceId == null) return false;
+    final windows = Platform.isWindows;
+    final profile = windows
+        ? _terminalProfiles.cachedProfiles
+              .where((p) => p.id == TerminalProfile.powershellId)
+              .firstOrNull
+        : null;
+    final shell = windows ? TerminalShell.powershell : TerminalShell.posix;
+    final home = userHome() ?? Directory.current.path;
+    final cwd = local && selectedProject.path.isNotEmpty
+        ? selectedProject.path
+        : home;
+    if (workspaceId != _selectedProjectId) selectProject(workspaceId);
+    final res = newTerminalTab(
+      cwd: cwd,
+      title: title,
+      workspaceId: workspaceId,
+      startupCommand: terminalScript(commands, shell),
+      profile: profile,
+    );
+    final tabId = switch (res) {
+      Success(:final value) => value,
+      Failure() => null,
+    };
+    final session = tabId == null ? null : _sessions[tabId];
+    if (session is! TerminalSession) return false;
+    final done = Completer<void>();
+    final previous = session.onProcessExit;
+    session.onProcessExit = () {
+      previous?.call();
+      if (!done.isCompleted) done.complete();
+    };
+    // Aba fechada pelo usuário mata o shell sem passar pelo onProcessExit
+    // (dispose não é notícia): conta como "terminou" também.
+    final closed = Timer.periodic(const Duration(seconds: 2), (_) {
+      if (_sessions[tabId] != session && !done.isCompleted) done.complete();
+    });
+    await done.future;
+    closed.cancel();
+    return true;
+  }
+
   /// "Update from parent": mergeia a branch **do pai** (root de origem) no
   /// checkout do worktree [fork] — o inverso do [mergeWorktreeToParent].
   /// Conflito fica no worktree pro usuário resolver (exit ≠ 0 no dialog);
@@ -5759,6 +5827,9 @@ class CockpitViewModel extends ChangeNotifier
     String? graphBoxId,
     String? workspaceId,
     bool takeFocus = true,
+    // Shell específico (`null` = padrão efetivo). O "Instalar/Conectar" da
+    // aba Meus repositórios força o PowerShell no Windows.
+    TerminalProfile? profile,
   }) {
     final projectId = workspaceId ?? _selectedProjectId;
     final tree = projectId == null ? null : _trees[projectId];
@@ -5776,6 +5847,7 @@ class CockpitViewModel extends ChangeNotifier
       title: title ?? _sanitizeName(_basename(cwd)),
       startupCommand: startupCommand,
       graphBoxId: graphBoxId,
+      profile: profile,
     );
     if (title != null && title.trim().isNotEmpty) {
       s.setManualLabel(title);

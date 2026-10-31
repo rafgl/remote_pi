@@ -68,6 +68,7 @@ class AppSettings {
     this.automationModelId,
     this.updateCheckFrequency = UpdateCheckFrequency.daily,
     this.lastUpdateCheckTime,
+    this.cloneRoot,
   });
 
   final AppThemeMode themeMode;
@@ -252,6 +253,11 @@ class AppSettings {
   /// Data da última verificação de atualização.
   final DateTime? lastUpdateCheckTime;
 
+  /// Pasta onde a aba "Meus repositórios" clona em um clique (cada repo vira
+  /// `<cloneRoot>/<nome>`). `null` = ainda não escolhida: o primeiro clone
+  /// pergunta, com `~/Projetos` sugerido. Editável nas Configurações.
+  final String? cloneRoot;
+
   AppSettings copyWith({
     AppThemeMode? themeMode,
     String? interfaceFont,
@@ -301,6 +307,7 @@ class AppSettings {
     bool useDefaultAutomationModel = false,
     UpdateCheckFrequency? updateCheckFrequency,
     DateTime? lastUpdateCheckTime,
+    String? cloneRoot,
   }) {
     return AppSettings(
       themeMode: themeMode ?? this.themeMode,
@@ -358,6 +365,7 @@ class AppSettings {
           : (automationModelId ?? this.automationModelId),
       updateCheckFrequency: updateCheckFrequency ?? this.updateCheckFrequency,
       lastUpdateCheckTime: lastUpdateCheckTime ?? this.lastUpdateCheckTime,
+      cloneRoot: cloneRoot ?? this.cloneRoot,
     );
   }
 
@@ -421,6 +429,7 @@ class AppSettings {
     'updateCheckFrequency': updateCheckFrequency.name,
     if (lastUpdateCheckTime != null)
       'lastUpdateCheckTime': lastUpdateCheckTime!.toIso8601String(),
+    if (cloneRoot != null) 'clone.root': cloneRoot,
   };
 
   factory AppSettings.fromJson(Map<dynamic, dynamic> json) {
@@ -509,6 +518,7 @@ class AppSettings {
       lastUpdateCheckTime: json['lastUpdateCheckTime'] != null
           ? DateTime.tryParse(json['lastUpdateCheckTime'] as String)
           : null,
+      cloneRoot: str(json['clone.root']),
     );
   }
 }

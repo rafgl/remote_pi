@@ -304,6 +304,13 @@ class SettingsController extends ChangeNotifier {
   void setLastUpdateCheckTime(DateTime time) =>
       _apply(_settings.copyWith(lastUpdateCheckTime: time));
 
+  /// Pasta dos clones em um clique ("Meus repositórios"). Vazio é ignorado:
+  /// a pasta só muda para outra, nunca volta a "não escolhida".
+  void setCloneRoot(String path) {
+    if (path.trim().isEmpty) return;
+    _apply(_settings.copyWith(cloneRoot: path.trim()));
+  }
+
   /// Persiste a visibilidade dos painéis do shell (rail de projetos + árvore de
   /// arquivos) para restaurar no próximo boot. Não faz `notifyListeners` porque
   /// a fonte de verdade em runtime é a `CockpitViewModel` — aqui só grava.

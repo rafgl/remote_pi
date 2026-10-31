@@ -244,10 +244,19 @@ void main() {
       );
     });
 
-    test('falha sem dica conhecida: null', () {
+    test('pasta de destino ocupada', () {
       expect(
         classifyCloneFailure([
           "fatal: destination path 'x' already exists and is not an empty directory.",
+        ]),
+        CloneFailure.targetExists,
+      );
+    });
+
+    test('falha sem dica conhecida: null', () {
+      expect(
+        classifyCloneFailure([
+          'fatal: unable to access: Could not resolve host: github.com',
         ]),
         isNull,
       );

@@ -193,6 +193,7 @@ class Translations$cockpit$en {
 	late final Translations$cockpit$telemetry$en telemetry = Translations$cockpit$telemetry$en.internal(_root);
 	late final Translations$cockpit$panelView$en panelView = Translations$cockpit$panelView$en.internal(_root);
 	late final Translations$cockpit$cloneRepoDialog$en cloneRepoDialog = Translations$cockpit$cloneRepoDialog$en.internal(_root);
+	late final Translations$cockpit$myRepos$en myRepos = Translations$cockpit$myRepos$en.internal(_root);
 }
 
 // Path: settings
@@ -3311,6 +3312,261 @@ class Translations$cockpit$cloneRepoDialog$en {
 	String get hintAuth => 'Access denied or repository not found. For SSH, check your key with ssh -T git@github.com; for HTTPS, sign in with your Git credential manager (or gh auth login).';
 }
 
+// Path: cockpit.myRepos
+class Translations$cockpit$myRepos$en {
+	Translations$cockpit$myRepos$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Paste URL'
+	String get tabPasteUrl => 'Paste URL';
+
+	/// en: 'My repositories'
+	String get tabMyRepos => 'My repositories';
+
+	/// en: 'Looking for Git CLIs on this computer…'
+	String get detecting => 'Looking for Git CLIs on this computer…';
+
+	/// en: 'Connect another service'
+	String get connectOther => 'Connect another service';
+
+	/// en: 'Search repositories…'
+	String get search => 'Search repositories…';
+
+	/// en: '${host} · signed in as ${login} (${cli})'
+	String signedInAs({required Object host, required Object login, required Object cli}) => '${host} · signed in as ${login} (${cli})';
+
+	/// en: '(one) {1 repository} (other) {${n} repositories}'
+	String count({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
+		one: '1 repository',
+		other: '${n} repositories',
+	);
+
+	/// en: '${shown} of ${total}'
+	String countFiltered({required Object shown, required Object total}) => '${shown} of ${total}';
+
+	/// en: '${owner} · you'
+	String ownerYou({required Object owner}) => '${owner} · you';
+
+	/// en: '${owner} · organization'
+	String ownerOrg({required Object owner}) => '${owner} · organization';
+
+	/// en: 'private'
+	String get private => 'private';
+
+	/// en: 'updated ${ago}'
+	String updated({required Object ago}) => 'updated ${ago}';
+
+	/// en: 'just now'
+	String get justNow => 'just now';
+
+	/// en: '(one) {1 minute ago} (other) {${n} minutes ago}'
+	String minutesAgo({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
+		one: '1 minute ago',
+		other: '${n} minutes ago',
+	);
+
+	/// en: '(one) {1 hour ago} (other) {${n} hours ago}'
+	String hoursAgo({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
+		one: '1 hour ago',
+		other: '${n} hours ago',
+	);
+
+	/// en: 'yesterday'
+	String get yesterday => 'yesterday';
+
+	/// en: '(one) {1 day ago} (other) {${n} days ago}'
+	String daysAgo({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
+		one: '1 day ago',
+		other: '${n} days ago',
+	);
+
+	/// en: '(one) {1 week ago} (other) {${n} weeks ago}'
+	String weeksAgo({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
+		one: '1 week ago',
+		other: '${n} weeks ago',
+	);
+
+	/// en: '(one) {1 month ago} (other) {${n} months ago}'
+	String monthsAgo({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
+		one: '1 month ago',
+		other: '${n} months ago',
+	);
+
+	/// en: '(one) {1 year ago} (other) {${n} years ago}'
+	String yearsAgo({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
+		one: '1 year ago',
+		other: '${n} years ago',
+	);
+
+	/// en: 'Clone'
+	String get clone => 'Clone';
+
+	/// en: 'Open'
+	String get open => 'Open';
+
+	/// en: 'Try again'
+	String get retry => 'Try again';
+
+	/// en: 'Show details'
+	String get details => 'Show details';
+
+	/// en: 'Hide details'
+	String get hideDetails => 'Hide details';
+
+	/// en: 'Already cloned in ${path}'
+	String alreadyCloned({required Object path}) => 'Already cloned in ${path}';
+
+	/// en: 'Starting…'
+	String get phaseStarting => 'Starting…';
+
+	/// en: 'Counting objects'
+	String get phaseCounting => 'Counting objects';
+
+	/// en: 'Compressing objects'
+	String get phaseCompressing => 'Compressing objects';
+
+	/// en: 'Receiving objects'
+	String get phaseReceiving => 'Receiving objects';
+
+	/// en: 'Resolving deltas'
+	String get phaseResolving => 'Resolving deltas';
+
+	/// en: 'Checking out files'
+	String get phaseUpdating => 'Checking out files';
+
+	/// en: '${phase} ${percent}%'
+	String progress({required Object phase, required Object percent}) => '${phase} ${percent}%';
+
+	/// en: '${phase} ${percent}% · ${size}'
+	String progressSize({required Object phase, required Object percent, required Object size}) => '${phase} ${percent}% · ${size}';
+
+	/// en: 'Clones into'
+	String get clonesInto => 'Clones into';
+
+	/// en: 'Change…'
+	String get change => 'Change…';
+
+	/// en: 'Choose where to clone your repositories'
+	String get chooseRootTitle => 'Choose where to clone your repositories';
+
+	/// en: 'Fetching your repositories from ${provider}…'
+	String loading({required Object provider}) => 'Fetching your repositories from ${provider}…';
+
+	/// en: 'No repositories in this account.'
+	String get empty => 'No repositories in this account.';
+
+	/// en: 'No repository matches "${query}".'
+	String noMatch({required Object query}) => 'No repository matches "${query}".';
+
+	/// en: '${provider} says you are not signed in. Connect again below.'
+	String errSignedOut({required Object provider}) => '${provider} says you are not signed in. Connect again below.';
+
+	/// en: '${cli} is no longer available on this computer.'
+	String errCli({required Object cli}) => '${cli} is no longer available on this computer.';
+
+	/// en: 'This account has no Azure DevOps organization.'
+	String get errNoOrg => 'This account has no Azure DevOps organization.';
+
+	/// en: '${cli} could not list the repositories.'
+	String errCommand({required Object cli}) => '${cli} could not list the repositories.';
+
+	/// en: '${cli} returned output Cockpit could not read.'
+	String errOutput({required Object cli}) => '${cli} returned output Cockpit could not read.';
+
+	/// en: 'No access to ${repo}'
+	String failAuth({required Object repo}) => 'No access to ${repo}';
+
+	/// en: '${path} already exists and is not empty'
+	String failExists({required Object path}) => '${path} already exists and is not empty';
+
+	/// en: 'Git was not found on this computer'
+	String get failGit => 'Git was not found on this computer';
+
+	/// en: 'macOS Command Line Tools are missing (xcode-select --install)'
+	String get failXcode => 'macOS Command Line Tools are missing (xcode-select --install)';
+
+	/// en: 'SSH is not available for this repository'
+	String get failSsh => 'SSH is not available for this repository';
+
+	/// en: 'The server's SSH host key could not be verified'
+	String get failHostKey => 'The server\'s SSH host key could not be verified';
+
+	/// en: 'Could not clone ${repo}'
+	String failGeneric({required Object repo}) => 'Could not clone ${repo}';
+
+	/// en: 'Connect a Git service'
+	String get connectTitle => 'Connect a Git service';
+
+	/// en: 'No Git service connected'
+	String get noneTitle => 'No Git service connected';
+
+	/// en: 'The list uses the official CLI already on your computer. Cockpit never asks for or stores a token. Install and connect in a terminal tab; when it finishes, the list reloads.'
+	String get connectIntro => 'The list uses the official CLI already on your computer. Cockpit never asks for or stores a token. Install and connect in a terminal tab; when it finishes, the list reloads.';
+
+	/// en: '${cli} is not installed'
+	String stateMissing({required Object cli}) => '${cli} is not installed';
+
+	/// en: '${cli} is installed, not connected'
+	String stateSignedOut({required Object cli}) => '${cli} is installed, not connected';
+
+	/// en: 'Connected as ${login}'
+	String stateReady({required Object login}) => 'Connected as ${login}';
+
+	/// en: 'Install'
+	String get install => 'Install';
+
+	/// en: 'Connect'
+	String get connect => 'Connect';
+
+	/// en: 'Download'
+	String get getAt => 'Download';
+
+	/// en: 'Homebrew not found: install ${cli} from the official page.'
+	String noBrew({required Object cli}) => 'Homebrew not found: install ${cli} from the official page.';
+
+	/// en: 'Check again'
+	String get checkAgain => 'Check again';
+
+	/// en: '"Paste URL" still works with any Git server.'
+	String get pasteStillWorks => '"Paste URL" still works with any Git server.';
+
+	/// en: 'Clones go to ${path}.'
+	String clonesGoTo({required Object path}) => 'Clones go to ${path}.';
+
+	/// en: 'Bitbucket is not supported yet: it has no official CLI that lists repositories. Use "Paste URL".'
+	String get bitbucketNote => 'Bitbucket is not supported yet: it has no official CLI that lists repositories. Use "Paste URL".';
+
+	/// en: 'Install ${cli}'
+	String terminalInstall({required Object cli}) => 'Install ${cli}';
+
+	/// en: 'Connect ${provider}'
+	String terminalConnect({required Object provider}) => 'Connect ${provider}';
+
+	/// en: 'Where should your repositories be cloned?'
+	String get firstFolderTitle => 'Where should your repositories be cloned?';
+
+	/// en: 'Each one-click clone becomes a folder in here, named after the repository (${command}).'
+	String firstFolderBody({required Object command}) => 'Each one-click clone becomes a folder in here, named after the repository (${command}).';
+
+	/// en: 'suggested'
+	String get suggested => 'suggested';
+
+	/// en: 'Choose another folder…'
+	String get chooseOther => 'Choose another folder…';
+
+	/// en: 'You can change it later in Settings.'
+	String get changeLater => 'You can change it later in Settings.';
+
+	/// en: 'Use ${path} and clone'
+	String useAndClone({required Object path}) => 'Use ${path} and clone';
+
+	/// en: '${name} cloned in ${path}'
+	String doneToast({required Object name, required Object path}) => '${name} cloned in ${path}';
+}
+
 // Path: settings.language
 class Translations$settings$language$en {
 	Translations$settings$language$en.internal(this._root);
@@ -3984,6 +4240,21 @@ class Translations$settings$page$general$en {
 
 	/// en: 'Records Cockpit’s own errors and warnings in a separate Telemetry store (the “Cockpit” chip) and turns on performance metrics. Only useful to whoever maintains the app.'
 	String get developerModeDesc => 'Records Cockpit’s own errors and warnings in a separate Telemetry store (the “Cockpit” chip) and turns on performance metrics. Only useful to whoever maintains the app.';
+
+	/// en: 'Repositories'
+	String get sectionRepositories => 'Repositories';
+
+	/// en: 'Clone folder'
+	String get cloneRootTitle => 'Clone folder';
+
+	/// en: 'Where "My repositories" clones in one click.'
+	String get cloneRootDesc => 'Where "My repositories" clones in one click.';
+
+	/// en: 'Not chosen yet: asked on the first clone'
+	String get cloneRootNotSet => 'Not chosen yet: asked on the first clone';
+
+	/// en: 'Choose…'
+	String get cloneRootChoose => 'Choose…';
 }
 
 // Path: settings.page.diagnostics
@@ -5362,6 +5633,81 @@ extension on Translations {
 			'cockpit.cloneRepoDialog.hintSshMissing' => 'SSH is not available for this URL. Use the HTTPS URL, or install OpenSSH (Git for Windows ships one).',
 			'cockpit.cloneRepoDialog.hintHostKey' => 'The server\'s SSH host key could not be verified or has changed. Check ~/.ssh/known_hosts before trying again.',
 			'cockpit.cloneRepoDialog.hintAuth' => 'Access denied or repository not found. For SSH, check your key with ssh -T git@github.com; for HTTPS, sign in with your Git credential manager (or gh auth login).',
+			'cockpit.myRepos.tabPasteUrl' => 'Paste URL',
+			'cockpit.myRepos.tabMyRepos' => 'My repositories',
+			'cockpit.myRepos.detecting' => 'Looking for Git CLIs on this computer…',
+			'cockpit.myRepos.connectOther' => 'Connect another service',
+			'cockpit.myRepos.search' => 'Search repositories…',
+			'cockpit.myRepos.signedInAs' => ({required Object host, required Object login, required Object cli}) => '${host} · signed in as ${login} (${cli})',
+			'cockpit.myRepos.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '1 repository', other: '${n} repositories', ), 
+			'cockpit.myRepos.countFiltered' => ({required Object shown, required Object total}) => '${shown} of ${total}',
+			'cockpit.myRepos.ownerYou' => ({required Object owner}) => '${owner} · you',
+			'cockpit.myRepos.ownerOrg' => ({required Object owner}) => '${owner} · organization',
+			'cockpit.myRepos.private' => 'private',
+			'cockpit.myRepos.updated' => ({required Object ago}) => 'updated ${ago}',
+			'cockpit.myRepos.justNow' => 'just now',
+			'cockpit.myRepos.minutesAgo' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '1 minute ago', other: '${n} minutes ago', ), 
+			'cockpit.myRepos.hoursAgo' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '1 hour ago', other: '${n} hours ago', ), 
+			'cockpit.myRepos.yesterday' => 'yesterday',
+			'cockpit.myRepos.daysAgo' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '1 day ago', other: '${n} days ago', ), 
+			'cockpit.myRepos.weeksAgo' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '1 week ago', other: '${n} weeks ago', ), 
+			'cockpit.myRepos.monthsAgo' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '1 month ago', other: '${n} months ago', ), 
+			'cockpit.myRepos.yearsAgo' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '1 year ago', other: '${n} years ago', ), 
+			'cockpit.myRepos.clone' => 'Clone',
+			'cockpit.myRepos.open' => 'Open',
+			'cockpit.myRepos.retry' => 'Try again',
+			'cockpit.myRepos.details' => 'Show details',
+			'cockpit.myRepos.hideDetails' => 'Hide details',
+			'cockpit.myRepos.alreadyCloned' => ({required Object path}) => 'Already cloned in ${path}',
+			'cockpit.myRepos.phaseStarting' => 'Starting…',
+			'cockpit.myRepos.phaseCounting' => 'Counting objects',
+			'cockpit.myRepos.phaseCompressing' => 'Compressing objects',
+			'cockpit.myRepos.phaseReceiving' => 'Receiving objects',
+			'cockpit.myRepos.phaseResolving' => 'Resolving deltas',
+			'cockpit.myRepos.phaseUpdating' => 'Checking out files',
+			'cockpit.myRepos.progress' => ({required Object phase, required Object percent}) => '${phase} ${percent}%',
+			'cockpit.myRepos.progressSize' => ({required Object phase, required Object percent, required Object size}) => '${phase} ${percent}% · ${size}',
+			'cockpit.myRepos.clonesInto' => 'Clones into',
+			'cockpit.myRepos.change' => 'Change…',
+			'cockpit.myRepos.chooseRootTitle' => 'Choose where to clone your repositories',
+			'cockpit.myRepos.loading' => ({required Object provider}) => 'Fetching your repositories from ${provider}…',
+			'cockpit.myRepos.empty' => 'No repositories in this account.',
+			'cockpit.myRepos.noMatch' => ({required Object query}) => 'No repository matches "${query}".',
+			'cockpit.myRepos.errSignedOut' => ({required Object provider}) => '${provider} says you are not signed in. Connect again below.',
+			'cockpit.myRepos.errCli' => ({required Object cli}) => '${cli} is no longer available on this computer.',
+			'cockpit.myRepos.errNoOrg' => 'This account has no Azure DevOps organization.',
+			'cockpit.myRepos.errCommand' => ({required Object cli}) => '${cli} could not list the repositories.',
+			'cockpit.myRepos.errOutput' => ({required Object cli}) => '${cli} returned output Cockpit could not read.',
+			'cockpit.myRepos.failAuth' => ({required Object repo}) => 'No access to ${repo}',
+			'cockpit.myRepos.failExists' => ({required Object path}) => '${path} already exists and is not empty',
+			'cockpit.myRepos.failGit' => 'Git was not found on this computer',
+			'cockpit.myRepos.failXcode' => 'macOS Command Line Tools are missing (xcode-select --install)',
+			'cockpit.myRepos.failSsh' => 'SSH is not available for this repository',
+			'cockpit.myRepos.failHostKey' => 'The server\'s SSH host key could not be verified',
+			'cockpit.myRepos.failGeneric' => ({required Object repo}) => 'Could not clone ${repo}',
+			'cockpit.myRepos.connectTitle' => 'Connect a Git service',
+			'cockpit.myRepos.noneTitle' => 'No Git service connected',
+			'cockpit.myRepos.connectIntro' => 'The list uses the official CLI already on your computer. Cockpit never asks for or stores a token. Install and connect in a terminal tab; when it finishes, the list reloads.',
+			'cockpit.myRepos.stateMissing' => ({required Object cli}) => '${cli} is not installed',
+			'cockpit.myRepos.stateSignedOut' => ({required Object cli}) => '${cli} is installed, not connected',
+			'cockpit.myRepos.stateReady' => ({required Object login}) => 'Connected as ${login}',
+			'cockpit.myRepos.install' => 'Install',
+			'cockpit.myRepos.connect' => 'Connect',
+			'cockpit.myRepos.getAt' => 'Download',
+			'cockpit.myRepos.noBrew' => ({required Object cli}) => 'Homebrew not found: install ${cli} from the official page.',
+			'cockpit.myRepos.checkAgain' => 'Check again',
+			'cockpit.myRepos.pasteStillWorks' => '"Paste URL" still works with any Git server.',
+			'cockpit.myRepos.clonesGoTo' => ({required Object path}) => 'Clones go to ${path}.',
+			'cockpit.myRepos.bitbucketNote' => 'Bitbucket is not supported yet: it has no official CLI that lists repositories. Use "Paste URL".',
+			'cockpit.myRepos.terminalInstall' => ({required Object cli}) => 'Install ${cli}',
+			'cockpit.myRepos.terminalConnect' => ({required Object provider}) => 'Connect ${provider}',
+			'cockpit.myRepos.firstFolderTitle' => 'Where should your repositories be cloned?',
+			'cockpit.myRepos.firstFolderBody' => ({required Object command}) => 'Each one-click clone becomes a folder in here, named after the repository (${command}).',
+			'cockpit.myRepos.suggested' => 'suggested',
+			'cockpit.myRepos.chooseOther' => 'Choose another folder…',
+			'cockpit.myRepos.changeLater' => 'You can change it later in Settings.',
+			'cockpit.myRepos.useAndClone' => ({required Object path}) => 'Use ${path} and clone',
+			'cockpit.myRepos.doneToast' => ({required Object name, required Object path}) => '${name} cloned in ${path}',
 			'settings.language.title' => 'Language',
 			'settings.language.system' => 'System',
 			'settings.language.english' => 'English',
@@ -5403,6 +5749,11 @@ extension on Translations {
 			'settings.page.general.updateFrequency.never' => 'Never',
 			'settings.page.general.developerModeTitle' => 'Developer mode',
 			'settings.page.general.developerModeDesc' => 'Records Cockpit’s own errors and warnings in a separate Telemetry store (the “Cockpit” chip) and turns on performance metrics. Only useful to whoever maintains the app.',
+			'settings.page.general.sectionRepositories' => 'Repositories',
+			'settings.page.general.cloneRootTitle' => 'Clone folder',
+			'settings.page.general.cloneRootDesc' => 'Where "My repositories" clones in one click.',
+			'settings.page.general.cloneRootNotSet' => 'Not chosen yet: asked on the first clone',
+			'settings.page.general.cloneRootChoose' => 'Choose…',
 			'settings.page.diagnostics.sectionTitle' => 'Diagnostics',
 			'settings.page.diagnostics.logFileTitle' => 'Log file',
 			'settings.page.diagnostics.logFileDesc' => ({required Object days, required Object path}) => 'Errors and startup events are recorded here, kept for ${days} days.\n${path}',
@@ -5498,6 +5849,8 @@ extension on Translations {
 			'settings.page.appearance.sectionLayout' => 'Layout',
 			'settings.page.appearance.swapPanelsTitle' => 'Swap side panels',
 			'settings.page.appearance.swapPanelsDesc' => 'Puts workspaces on the right and files, search, git and database on the left.',
+			_ => null,
+		} ?? switch (path) {
 			'settings.page.notifications.sectionTitle' => 'Notifications',
 			'settings.page.notifications.enableTitle' => 'Enable notifications',
 			'settings.page.notifications.enableDesc' => 'Alert me when an agent finishes a turn and the window is not focused.',
@@ -5578,8 +5931,6 @@ extension on Translations {
 			'automation.error.authentication' => ({required Object harness, required Object detail}) => '${harness}: ${detail}',
 			'automation.error.timeout' => ({required Object harness, required Object seconds}) => '${harness} did not respond within ${seconds} seconds.',
 			'automation.error.cancelled' => 'Commit message generation was cancelled.',
-			_ => null,
-		} ?? switch (path) {
 			'automation.error.process' => ({required Object harness, required Object detail}) => '${harness}: ${detail}',
 			'automation.error.processNoDetail' => ({required Object harness}) => '${harness} could not generate a commit message.',
 			'automation.error.invalidResponse' => 'The automation returned an empty commit message.',

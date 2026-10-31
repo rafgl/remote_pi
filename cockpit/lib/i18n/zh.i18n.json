@@ -952,6 +952,97 @@
       "hintSshMissing": "此 URL 无法使用 SSH。请改用 HTTPS URL，或安装 OpenSSH（Git for Windows 自带）。",
       "hintHostKey": "无法验证服务器的 SSH 主机密钥，或密钥已更改。重试前请检查 ~/.ssh/known_hosts。",
       "hintAuth": "访问被拒绝或仓库不存在。SSH：用 ssh -T git@github.com 测试密钥；HTTPS：通过 Git 凭据管理器登录（或 gh auth login）。"
+    },
+    "myRepos": {
+      "tabPasteUrl": "粘贴 URL",
+      "tabMyRepos": "我的仓库",
+      "detecting": "正在此电脑上查找 Git CLI…",
+      "connectOther": "连接其他服务",
+      "search": "搜索仓库…",
+      "signedInAs": "${host} · 已登录为 ${login}（${cli}）",
+      "count(plural)": {
+        "other": "${n} 个仓库"
+      },
+      "countFiltered": "${shown} / ${total}",
+      "ownerYou": "${owner} · 你",
+      "ownerOrg": "${owner} · 组织",
+      "private": "私有",
+      "updated": "更新于${ago}",
+      "justNow": "刚刚",
+      "minutesAgo(plural)": {
+        "other": "${n} 分钟前"
+      },
+      "hoursAgo(plural)": {
+        "other": "${n} 小时前"
+      },
+      "yesterday": "昨天",
+      "daysAgo(plural)": {
+        "other": "${n} 天前"
+      },
+      "weeksAgo(plural)": {
+        "other": "${n} 周前"
+      },
+      "monthsAgo(plural)": {
+        "other": "${n} 个月前"
+      },
+      "yearsAgo(plural)": {
+        "other": "${n} 年前"
+      },
+      "clone": "克隆",
+      "open": "打开",
+      "retry": "重试",
+      "details": "查看详情",
+      "hideDetails": "隐藏详情",
+      "alreadyCloned": "已克隆到 ${path}",
+      "phaseStarting": "正在开始…",
+      "phaseCounting": "正在统计对象",
+      "phaseCompressing": "正在压缩对象",
+      "phaseReceiving": "正在接收对象",
+      "phaseResolving": "正在处理差异",
+      "phaseUpdating": "正在检出文件",
+      "progress": "${phase} ${percent}%",
+      "progressSize": "${phase} ${percent}% · ${size}",
+      "clonesInto": "克隆到",
+      "change": "更改…",
+      "chooseRootTitle": "选择仓库的克隆位置",
+      "loading": "正在从 ${provider} 获取你的仓库…",
+      "empty": "此账号下没有仓库。",
+      "noMatch": "没有匹配“${query}”的仓库。",
+      "errSignedOut": "${provider} 显示你尚未登录。请在下方重新连接。",
+      "errCli": "此电脑上已找不到 ${cli}。",
+      "errNoOrg": "此账号没有任何 Azure DevOps 组织。",
+      "errCommand": "${cli} 无法列出仓库。",
+      "errOutput": "${cli} 返回了 Cockpit 无法读取的输出。",
+      "failAuth": "无权访问 ${repo}",
+      "failExists": "${path} 已存在且不为空",
+      "failGit": "此电脑上找不到 Git",
+      "failXcode": "缺少 macOS Command Line Tools（xcode-select --install）",
+      "failSsh": "此仓库无法使用 SSH",
+      "failHostKey": "无法验证服务器的 SSH 主机密钥",
+      "failGeneric": "无法克隆 ${repo}",
+      "connectTitle": "连接 Git 服务",
+      "noneTitle": "尚未连接任何 Git 服务",
+      "connectIntro": "列表使用你电脑上已有的官方 CLI。Cockpit 不会索取或保存令牌。在终端标签页中安装并连接；完成后列表会自动刷新。",
+      "stateMissing": "未安装 ${cli}",
+      "stateSignedOut": "已安装 ${cli}，未连接",
+      "stateReady": "已连接为 ${login}",
+      "install": "安装",
+      "connect": "连接",
+      "getAt": "下载",
+      "noBrew": "未找到 Homebrew：请从官方页面安装 ${cli}。",
+      "checkAgain": "重新检查",
+      "pasteStillWorks": "“粘贴 URL”仍可用于任何 Git 服务器。",
+      "clonesGoTo": "克隆将放到 ${path}。",
+      "bitbucketNote": "暂不支持 Bitbucket：它没有能列出仓库的官方 CLI。请使用“粘贴 URL”。",
+      "terminalInstall": "安装 ${cli}",
+      "terminalConnect": "连接 ${provider}",
+      "firstFolderTitle": "要把仓库克隆到哪里？",
+      "firstFolderBody": "每次一键克隆都会在这里创建一个以仓库命名的文件夹（${command}）。",
+      "suggested": "推荐",
+      "chooseOther": "选择其他文件夹…",
+      "changeLater": "之后可以在设置中更改。",
+      "useAndClone": "使用 ${path} 并克隆",
+      "doneToast": "${name} 已克隆到 ${path}"
     }
   },
   "settings": {
@@ -1007,7 +1098,12 @@
           "byLanguage": "Markdown 和纯文本",
           "always": "所有文件",
           "off": "关闭"
-        }
+        },
+        "sectionRepositories": "仓库",
+        "cloneRootTitle": "克隆文件夹",
+        "cloneRootDesc": "“我的仓库”一键克隆的位置。",
+        "cloneRootNotSet": "尚未选择：首次克隆时询问",
+        "cloneRootChoose": "选择…"
       },
       "diagnostics": {
         "sectionTitle": "诊断",

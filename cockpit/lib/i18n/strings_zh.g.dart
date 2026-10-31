@@ -143,6 +143,7 @@ class _Translations$cockpit$zh extends Translations$cockpit$en {
 	@override late final _Translations$cockpit$telemetry$zh telemetry = _Translations$cockpit$telemetry$zh._(_root);
 	@override late final _Translations$cockpit$panelView$zh panelView = _Translations$cockpit$panelView$zh._(_root);
 	@override late final _Translations$cockpit$cloneRepoDialog$zh cloneRepoDialog = _Translations$cockpit$cloneRepoDialog$zh._(_root);
+	@override late final _Translations$cockpit$myRepos$zh myRepos = _Translations$cockpit$myRepos$zh._(_root);
 }
 
 // Path: settings
@@ -1455,6 +1456,104 @@ class _Translations$cockpit$cloneRepoDialog$zh extends Translations$cockpit$clon
 	@override String get hintAuth => '访问被拒绝或仓库不存在。SSH：用 ssh -T git@github.com 测试密钥；HTTPS：通过 Git 凭据管理器登录（或 gh auth login）。';
 }
 
+// Path: cockpit.myRepos
+class _Translations$cockpit$myRepos$zh extends Translations$cockpit$myRepos$en {
+	_Translations$cockpit$myRepos$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String get tabPasteUrl => '粘贴 URL';
+	@override String get tabMyRepos => '我的仓库';
+	@override String get detecting => '正在此电脑上查找 Git CLI…';
+	@override String get connectOther => '连接其他服务';
+	@override String get search => '搜索仓库…';
+	@override String signedInAs({required Object host, required Object login, required Object cli}) => '${host} · 已登录为 ${login}（${cli}）';
+	@override String count({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '${n} 个仓库',
+	);
+	@override String countFiltered({required Object shown, required Object total}) => '${shown} / ${total}';
+	@override String ownerYou({required Object owner}) => '${owner} · 你';
+	@override String ownerOrg({required Object owner}) => '${owner} · 组织';
+	@override String get private => '私有';
+	@override String updated({required Object ago}) => '更新于${ago}';
+	@override String get justNow => '刚刚';
+	@override String minutesAgo({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '${n} 分钟前',
+	);
+	@override String hoursAgo({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '${n} 小时前',
+	);
+	@override String get yesterday => '昨天';
+	@override String daysAgo({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '${n} 天前',
+	);
+	@override String weeksAgo({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '${n} 周前',
+	);
+	@override String monthsAgo({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '${n} 个月前',
+	);
+	@override String yearsAgo({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
+		other: '${n} 年前',
+	);
+	@override String get clone => '克隆';
+	@override String get open => '打开';
+	@override String get retry => '重试';
+	@override String get details => '查看详情';
+	@override String get hideDetails => '隐藏详情';
+	@override String alreadyCloned({required Object path}) => '已克隆到 ${path}';
+	@override String get phaseStarting => '正在开始…';
+	@override String get phaseCounting => '正在统计对象';
+	@override String get phaseCompressing => '正在压缩对象';
+	@override String get phaseReceiving => '正在接收对象';
+	@override String get phaseResolving => '正在处理差异';
+	@override String get phaseUpdating => '正在检出文件';
+	@override String progress({required Object phase, required Object percent}) => '${phase} ${percent}%';
+	@override String progressSize({required Object phase, required Object percent, required Object size}) => '${phase} ${percent}% · ${size}';
+	@override String get clonesInto => '克隆到';
+	@override String get change => '更改…';
+	@override String get chooseRootTitle => '选择仓库的克隆位置';
+	@override String loading({required Object provider}) => '正在从 ${provider} 获取你的仓库…';
+	@override String get empty => '此账号下没有仓库。';
+	@override String noMatch({required Object query}) => '没有匹配“${query}”的仓库。';
+	@override String errSignedOut({required Object provider}) => '${provider} 显示你尚未登录。请在下方重新连接。';
+	@override String errCli({required Object cli}) => '此电脑上已找不到 ${cli}。';
+	@override String get errNoOrg => '此账号没有任何 Azure DevOps 组织。';
+	@override String errCommand({required Object cli}) => '${cli} 无法列出仓库。';
+	@override String errOutput({required Object cli}) => '${cli} 返回了 Cockpit 无法读取的输出。';
+	@override String failAuth({required Object repo}) => '无权访问 ${repo}';
+	@override String failExists({required Object path}) => '${path} 已存在且不为空';
+	@override String get failGit => '此电脑上找不到 Git';
+	@override String get failXcode => '缺少 macOS Command Line Tools（xcode-select --install）';
+	@override String get failSsh => '此仓库无法使用 SSH';
+	@override String get failHostKey => '无法验证服务器的 SSH 主机密钥';
+	@override String failGeneric({required Object repo}) => '无法克隆 ${repo}';
+	@override String get connectTitle => '连接 Git 服务';
+	@override String get noneTitle => '尚未连接任何 Git 服务';
+	@override String get connectIntro => '列表使用你电脑上已有的官方 CLI。Cockpit 不会索取或保存令牌。在终端标签页中安装并连接；完成后列表会自动刷新。';
+	@override String stateMissing({required Object cli}) => '未安装 ${cli}';
+	@override String stateSignedOut({required Object cli}) => '已安装 ${cli}，未连接';
+	@override String stateReady({required Object login}) => '已连接为 ${login}';
+	@override String get install => '安装';
+	@override String get connect => '连接';
+	@override String get getAt => '下载';
+	@override String noBrew({required Object cli}) => '未找到 Homebrew：请从官方页面安装 ${cli}。';
+	@override String get checkAgain => '重新检查';
+	@override String get pasteStillWorks => '“粘贴 URL”仍可用于任何 Git 服务器。';
+	@override String clonesGoTo({required Object path}) => '克隆将放到 ${path}。';
+	@override String get bitbucketNote => '暂不支持 Bitbucket：它没有能列出仓库的官方 CLI。请使用“粘贴 URL”。';
+	@override String terminalInstall({required Object cli}) => '安装 ${cli}';
+	@override String terminalConnect({required Object provider}) => '连接 ${provider}';
+	@override String get firstFolderTitle => '要把仓库克隆到哪里？';
+	@override String firstFolderBody({required Object command}) => '每次一键克隆都会在这里创建一个以仓库命名的文件夹（${command}）。';
+	@override String get suggested => '推荐';
+	@override String get chooseOther => '选择其他文件夹…';
+	@override String get changeLater => '之后可以在设置中更改。';
+	@override String useAndClone({required Object path}) => '使用 ${path} 并克隆';
+	@override String doneToast({required Object name, required Object path}) => '${name} 已克隆到 ${path}';
+}
+
 // Path: settings.language
 class _Translations$settings$language$zh extends Translations$settings$language$en {
 	_Translations$settings$language$zh._(TranslationsZh root) : this._root = root, super.internal(root);
@@ -1818,6 +1917,11 @@ class _Translations$settings$page$general$zh extends Translations$settings$page$
 	@override String get wordWrapTitle => '自动换行';
 	@override String get wordWrapDesc => '按面板宽度折行显示长行。在编辑器中按 Alt+Z（macOS 为 ⌥Z）切换。';
 	@override late final _Translations$settings$page$general$wordWrap$zh wordWrap = _Translations$settings$page$general$wordWrap$zh._(_root);
+	@override String get sectionRepositories => '仓库';
+	@override String get cloneRootTitle => '克隆文件夹';
+	@override String get cloneRootDesc => '“我的仓库”一键克隆的位置。';
+	@override String get cloneRootNotSet => '尚未选择：首次克隆时询问';
+	@override String get cloneRootChoose => '选择…';
 }
 
 // Path: settings.page.diagnostics
@@ -2884,6 +2988,81 @@ extension on TranslationsZh {
 			'cockpit.cloneRepoDialog.hintSshMissing' => '此 URL 无法使用 SSH。请改用 HTTPS URL，或安装 OpenSSH（Git for Windows 自带）。',
 			'cockpit.cloneRepoDialog.hintHostKey' => '无法验证服务器的 SSH 主机密钥，或密钥已更改。重试前请检查 ~/.ssh/known_hosts。',
 			'cockpit.cloneRepoDialog.hintAuth' => '访问被拒绝或仓库不存在。SSH：用 ssh -T git@github.com 测试密钥；HTTPS：通过 Git 凭据管理器登录（或 gh auth login）。',
+			'cockpit.myRepos.tabPasteUrl' => '粘贴 URL',
+			'cockpit.myRepos.tabMyRepos' => '我的仓库',
+			'cockpit.myRepos.detecting' => '正在此电脑上查找 Git CLI…',
+			'cockpit.myRepos.connectOther' => '连接其他服务',
+			'cockpit.myRepos.search' => '搜索仓库…',
+			'cockpit.myRepos.signedInAs' => ({required Object host, required Object login, required Object cli}) => '${host} · 已登录为 ${login}（${cli}）',
+			'cockpit.myRepos.count' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 个仓库', ), 
+			'cockpit.myRepos.countFiltered' => ({required Object shown, required Object total}) => '${shown} / ${total}',
+			'cockpit.myRepos.ownerYou' => ({required Object owner}) => '${owner} · 你',
+			'cockpit.myRepos.ownerOrg' => ({required Object owner}) => '${owner} · 组织',
+			'cockpit.myRepos.private' => '私有',
+			'cockpit.myRepos.updated' => ({required Object ago}) => '更新于${ago}',
+			'cockpit.myRepos.justNow' => '刚刚',
+			'cockpit.myRepos.minutesAgo' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 分钟前', ), 
+			'cockpit.myRepos.hoursAgo' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 小时前', ), 
+			'cockpit.myRepos.yesterday' => '昨天',
+			'cockpit.myRepos.daysAgo' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 天前', ), 
+			'cockpit.myRepos.weeksAgo' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 周前', ), 
+			'cockpit.myRepos.monthsAgo' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 个月前', ), 
+			'cockpit.myRepos.yearsAgo' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 年前', ), 
+			'cockpit.myRepos.clone' => '克隆',
+			'cockpit.myRepos.open' => '打开',
+			'cockpit.myRepos.retry' => '重试',
+			'cockpit.myRepos.details' => '查看详情',
+			'cockpit.myRepos.hideDetails' => '隐藏详情',
+			'cockpit.myRepos.alreadyCloned' => ({required Object path}) => '已克隆到 ${path}',
+			'cockpit.myRepos.phaseStarting' => '正在开始…',
+			'cockpit.myRepos.phaseCounting' => '正在统计对象',
+			'cockpit.myRepos.phaseCompressing' => '正在压缩对象',
+			'cockpit.myRepos.phaseReceiving' => '正在接收对象',
+			'cockpit.myRepos.phaseResolving' => '正在处理差异',
+			'cockpit.myRepos.phaseUpdating' => '正在检出文件',
+			'cockpit.myRepos.progress' => ({required Object phase, required Object percent}) => '${phase} ${percent}%',
+			'cockpit.myRepos.progressSize' => ({required Object phase, required Object percent, required Object size}) => '${phase} ${percent}% · ${size}',
+			'cockpit.myRepos.clonesInto' => '克隆到',
+			'cockpit.myRepos.change' => '更改…',
+			'cockpit.myRepos.chooseRootTitle' => '选择仓库的克隆位置',
+			'cockpit.myRepos.loading' => ({required Object provider}) => '正在从 ${provider} 获取你的仓库…',
+			'cockpit.myRepos.empty' => '此账号下没有仓库。',
+			'cockpit.myRepos.noMatch' => ({required Object query}) => '没有匹配“${query}”的仓库。',
+			'cockpit.myRepos.errSignedOut' => ({required Object provider}) => '${provider} 显示你尚未登录。请在下方重新连接。',
+			'cockpit.myRepos.errCli' => ({required Object cli}) => '此电脑上已找不到 ${cli}。',
+			'cockpit.myRepos.errNoOrg' => '此账号没有任何 Azure DevOps 组织。',
+			'cockpit.myRepos.errCommand' => ({required Object cli}) => '${cli} 无法列出仓库。',
+			'cockpit.myRepos.errOutput' => ({required Object cli}) => '${cli} 返回了 Cockpit 无法读取的输出。',
+			'cockpit.myRepos.failAuth' => ({required Object repo}) => '无权访问 ${repo}',
+			'cockpit.myRepos.failExists' => ({required Object path}) => '${path} 已存在且不为空',
+			'cockpit.myRepos.failGit' => '此电脑上找不到 Git',
+			'cockpit.myRepos.failXcode' => '缺少 macOS Command Line Tools（xcode-select --install）',
+			'cockpit.myRepos.failSsh' => '此仓库无法使用 SSH',
+			'cockpit.myRepos.failHostKey' => '无法验证服务器的 SSH 主机密钥',
+			'cockpit.myRepos.failGeneric' => ({required Object repo}) => '无法克隆 ${repo}',
+			'cockpit.myRepos.connectTitle' => '连接 Git 服务',
+			'cockpit.myRepos.noneTitle' => '尚未连接任何 Git 服务',
+			'cockpit.myRepos.connectIntro' => '列表使用你电脑上已有的官方 CLI。Cockpit 不会索取或保存令牌。在终端标签页中安装并连接；完成后列表会自动刷新。',
+			'cockpit.myRepos.stateMissing' => ({required Object cli}) => '未安装 ${cli}',
+			'cockpit.myRepos.stateSignedOut' => ({required Object cli}) => '已安装 ${cli}，未连接',
+			'cockpit.myRepos.stateReady' => ({required Object login}) => '已连接为 ${login}',
+			'cockpit.myRepos.install' => '安装',
+			'cockpit.myRepos.connect' => '连接',
+			'cockpit.myRepos.getAt' => '下载',
+			'cockpit.myRepos.noBrew' => ({required Object cli}) => '未找到 Homebrew：请从官方页面安装 ${cli}。',
+			'cockpit.myRepos.checkAgain' => '重新检查',
+			'cockpit.myRepos.pasteStillWorks' => '“粘贴 URL”仍可用于任何 Git 服务器。',
+			'cockpit.myRepos.clonesGoTo' => ({required Object path}) => '克隆将放到 ${path}。',
+			'cockpit.myRepos.bitbucketNote' => '暂不支持 Bitbucket：它没有能列出仓库的官方 CLI。请使用“粘贴 URL”。',
+			'cockpit.myRepos.terminalInstall' => ({required Object cli}) => '安装 ${cli}',
+			'cockpit.myRepos.terminalConnect' => ({required Object provider}) => '连接 ${provider}',
+			'cockpit.myRepos.firstFolderTitle' => '要把仓库克隆到哪里？',
+			'cockpit.myRepos.firstFolderBody' => ({required Object command}) => '每次一键克隆都会在这里创建一个以仓库命名的文件夹（${command}）。',
+			'cockpit.myRepos.suggested' => '推荐',
+			'cockpit.myRepos.chooseOther' => '选择其他文件夹…',
+			'cockpit.myRepos.changeLater' => '之后可以在设置中更改。',
+			'cockpit.myRepos.useAndClone' => ({required Object path}) => '使用 ${path} 并克隆',
+			'cockpit.myRepos.doneToast' => ({required Object name, required Object path}) => '${name} 已克隆到 ${path}',
 			'settings.language.title' => '语言',
 			'settings.language.system' => '跟随系统',
 			'settings.language.english' => 'English',
@@ -2925,6 +3104,11 @@ extension on TranslationsZh {
 			'settings.page.general.wordWrap.byLanguage' => 'Markdown 和纯文本',
 			'settings.page.general.wordWrap.always' => '所有文件',
 			'settings.page.general.wordWrap.off' => '关闭',
+			'settings.page.general.sectionRepositories' => '仓库',
+			'settings.page.general.cloneRootTitle' => '克隆文件夹',
+			'settings.page.general.cloneRootDesc' => '“我的仓库”一键克隆的位置。',
+			'settings.page.general.cloneRootNotSet' => '尚未选择：首次克隆时询问',
+			'settings.page.general.cloneRootChoose' => '选择…',
 			'settings.page.diagnostics.sectionTitle' => '诊断',
 			'settings.page.diagnostics.logFileTitle' => '日志文件',
 			'settings.page.diagnostics.logFileDesc' => ({required Object days, required Object path}) => '错误和启动事件记录在这里，保留 ${days} 天。\n${path}',
@@ -3020,6 +3204,8 @@ extension on TranslationsZh {
 			'settings.page.appearance.sectionLayout' => '布局',
 			'settings.page.appearance.swapPanelsTitle' => '交换侧边面板',
 			'settings.page.appearance.swapPanelsDesc' => '将工作区放到右侧，文件、搜索、git 和数据库放到左侧。',
+			_ => null,
+		} ?? switch (path) {
 			'settings.page.notifications.sectionTitle' => '通知',
 			'settings.page.notifications.enableTitle' => '启用通知',
 			'settings.page.notifications.enableDesc' => '当智能体完成一轮对话且窗口未聚焦时提醒我。',
@@ -3100,8 +3286,6 @@ extension on TranslationsZh {
 			'automation.error.authentication' => ({required Object harness, required Object detail}) => '${harness}：${detail}',
 			'automation.error.timeout' => ({required Object harness, required Object seconds}) => '${harness} 在 ${seconds} 秒内未响应。',
 			'automation.error.cancelled' => '提交信息生成已取消。',
-			_ => null,
-		} ?? switch (path) {
 			'automation.error.process' => ({required Object harness, required Object detail}) => '${harness}：${detail}',
 			'automation.error.processNoDetail' => ({required Object harness}) => '${harness} 无法生成提交信息。',
 			'automation.error.invalidResponse' => '自动化返回了空的提交信息。',

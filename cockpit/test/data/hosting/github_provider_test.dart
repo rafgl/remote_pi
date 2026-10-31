@@ -61,7 +61,7 @@ ghe.acme.com
 
     test('repo list: campos, dono usuário x organização, descrição vazia', () {
       final repos = parseGhRepoList(
-        '$_mineJson'.replaceFirst(']', ',${_orgJson.substring(1)}'),
+        _mineJson.replaceFirst(RegExp(r'\]$'), ',${_orgJson.substring(1)}'),
         host: 'github.com',
         login: 'rafgl',
       )!;

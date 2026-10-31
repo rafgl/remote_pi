@@ -127,6 +127,9 @@ enum CloneFailure {
   /// Sem credencial: chave SSH recusada, HTTPS sem usuário/senha, ou repo
   /// privado/inexistente (o GitHub responde igual pros dois).
   auth,
+
+  /// A pasta de destino já existe e não está vazia.
+  targetExists,
 }
 
 /// Classifica a saída de um clone que falhou. `null` = falha sem dica (o erro
@@ -152,8 +155,14 @@ CloneFailure? classifyCloneFailure(Iterable<String> lines) {
       out.contains('could not read username') ||
       out.contains('authentication failed') ||
       out.contains('repository not found') ||
+      out.contains('could not resolve to a repository') ||
+      out.contains('http 404') ||
+      out.contains('http 403') ||
       out.contains('could not read from remote repository')) {
     return CloneFailure.auth;
+  }
+  if (out.contains('already exists and is not an empty directory')) {
+    return CloneFailure.targetExists;
   }
   return null;
 }
